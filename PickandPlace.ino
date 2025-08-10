@@ -82,10 +82,22 @@ void loop() {
     }
   
     // RUN button pressed
-    if (Incoming_value == 26) {
-      if (savedCount > 0) {
+    // To run the robot in the loop mode 
+    if (Incoming_value == 26 && savedCount > 0) {
+        isrunning = true;
         Serial.println("Running saved sequence...");
-        for (int step = 0; step < savedCount; step++) {
+    }
+
+    // STOP button pressed
+    if (Incoming_value == 27){
+        isrunning = false;
+        Serial.println("Stopped.");
+    }
+  
+    //Playback Logic
+    if (isrunning) {
+      for (int step = 0; step < savedCount; step++) {
+        if (!isrunning) break; 
           servo1.write(savedPositions[step][0]);
           servo2.write(savedPositions[step][1]);
           servo3.write(savedPositions[step][2]);
@@ -95,12 +107,8 @@ void loop() {
           delay(1000); // wait between steps
         }
         Serial.println("Sequence complete.");
-      } else {
-        Serial.println("No positions saved!");
-      }
-      delay(300); // debounce
-    }
+     } else {
+      Serial.println("No positions saved to run.");
+     }
 }
-
-
 
