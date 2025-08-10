@@ -184,4 +184,9 @@ void loop() {
     servo1pos[nosavedpos1][0] = servo1.read();
     servo2pos[nosavedpos1][1] = servo2.read();
     servo3pos[nosavedpos1][2] = servo3.read();
-    servo4pos[nosavedpos1][3] = se
+    servo4pos[nosavedpos1][3] = servo4.read();
+    servo5pos[nosavedpos1][4] = servo5.read();
+    servo6pos[nosavedpos1][5] = servo6.read();
+  }
+
+
